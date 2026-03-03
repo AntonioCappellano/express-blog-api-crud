@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const postController = require("../controllers/postController")
+const postController = require("../controllers/postController");
 
 // INDEX
 router.get("/", postController.index);
@@ -9,14 +9,7 @@ router.get("/", postController.index);
 router.get("/:id", postController.show);
 
 // STORE
-router.post("/", (req, res) => {
-  const responseData = {
-    result: `Creazione post`,
-    success: true,
-  };
-
-  res.json(responseData);
-});
+router.post("/", postController.store);
 
 // UPDATE
 router.put("/:id", (req, res) => {
@@ -41,6 +34,6 @@ router.patch("/:id", (req, res) => {
 });
 
 //DESTROY
-router.delete("/:id", postController.destroy)
+router.delete("/:id", postController.destroy);
 
 module.exports = router;

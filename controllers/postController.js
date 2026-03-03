@@ -44,6 +44,16 @@ function destroy(req, res) {
   };
 
   res.json(responseData);
-};
+}
 
-module.exports = { index, show, destroy };
+// Store
+function store(req, res) {
+  const responseData = {
+    result: `Creazione post`,
+    success: true,
+  };
+
+  res.json(responseData);
+}
+
+module.exports = { index, show, destroy, store };
