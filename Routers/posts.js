@@ -1,16 +1,10 @@
 const express = require("express");
 const posts = require("../data/DataPosts");
 const router = express.Router();
+const postController = require("../controllers/postController")
 
 // INDEX
-router.get("/", (req, res) => {
-  const responseData = {
-    result: posts,
-    success: true,
-  };
-
-  res.json(responseData);
-});
+router.get("/", postController.index);
 
 // SHOW
 router.get("/:id", (req, res) => {
