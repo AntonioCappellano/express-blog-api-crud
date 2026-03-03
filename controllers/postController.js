@@ -34,4 +34,16 @@ function show(req, res) {
   res.json(responseData);
 }
 
-module.exports = { index, show };
+// Destroy
+
+function destroy(req, res) {
+  const postsId = req.params.id;
+  const responseData = {
+    result: `Eliminazione del post ${postsId}`,
+    success: true,
+  };
+
+  res.json(responseData);
+};
+
+module.exports = { index, show, destroy };

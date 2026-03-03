@@ -1,5 +1,4 @@
 const express = require("express");
-const posts = require("../data/DataPosts");
 const router = express.Router();
 const postController = require("../controllers/postController")
 
@@ -42,14 +41,6 @@ router.patch("/:id", (req, res) => {
 });
 
 //DESTROY
-router.delete("/:id", (req, res) => {
-  const postsId = req.params.id;
-  const responseData = {
-    result: `Eliminazione del post ${postsId}`,
-    success: true,
-  };
-
-  res.json(responseData);
-});
+router.delete("/:id", postController.destroy)
 
 module.exports = router;
