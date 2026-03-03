@@ -15,15 +15,7 @@ router.post("/", postController.store);
 router.put("/:id", postController.update);
 
 // MODIFY
-router.patch("/:id", (req, res) => {
-  const postsId = req.params.id;
-  const responseData = {
-    result: `Modifica parziale del post ${postsId}`,
-    success: true,
-  };
-
-  res.json(responseData);
-});
+router.patch("/:id", postController.modify);
 
 //DESTROY
 router.delete("/:id", postController.destroy);

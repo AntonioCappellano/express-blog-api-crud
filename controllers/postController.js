@@ -1,6 +1,7 @@
 const postsData = require("../data/DataPosts");
 
 // Index
+
 function index(req, res) {
   const responseData = {
     result: postsData,
@@ -47,6 +48,7 @@ function destroy(req, res) {
 }
 
 // Store
+
 function store(req, res) {
   const responseData = {
     result: `Creazione post`,
@@ -57,6 +59,7 @@ function store(req, res) {
 }
 
 // Update
+
 function update(req, res) {
   const postsId = req.params.id;
   const responseData = {
@@ -67,4 +70,16 @@ function update(req, res) {
   res.json(responseData);
 }
 
-module.exports = { index, show, destroy, store, update };
+// Modify
+
+function modify(req, res) {
+  const postsId = req.params.id;
+  const responseData = {
+    result: `Modifica parziale del post ${postsId}`,
+    success: true,
+  };
+
+  res.json(responseData);
+}
+
+module.exports = { index, show, destroy, store, update, modify };
