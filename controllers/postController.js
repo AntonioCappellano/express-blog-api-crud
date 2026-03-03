@@ -38,13 +38,29 @@ function show(req, res) {
 // Destroy
 
 function destroy(req, res) {
-  const postsId = req.params.id;
-  const responseData = {
-    result: `Eliminazione del post ${postsId}`,
-    success: true,
-  };
 
-  res.json(responseData);
+  const postId = parseInt(req.params.id);
+ 
+  // findIndex restituisce la posizione se non la trova restituisce -1
+  const postIndex = postsData.findIndex((post) => post.id === postId);
+ 
+  // se il post non esiste rispondiamo con un errore 404
+  if (postIndex === -1) {
+    const responseData = {
+      message: "Post non trovato",
+      success: false,
+    };
+
+    return res.status(404).json(responseData);
+  }
+  
+  // usando splice cancello l'elemento dall'array
+  postsData.splice(postIndex, 1);
+
+  console.log("Post eliminato ");
+  console.log("Lista aggiornata:", postsData);
+
+  res.sendStatus(204);
 }
 
 // Store
