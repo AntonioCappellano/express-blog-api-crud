@@ -56,4 +56,15 @@ function store(req, res) {
   res.json(responseData);
 }
 
-module.exports = { index, show, destroy, store };
+// Update
+function update(req, res) {
+  const postsId = req.params.id;
+  const responseData = {
+    result: `Modifica post ${postsId}`,
+    success: true,
+  };
+
+  res.json(responseData);
+}
+
+module.exports = { index, show, destroy, store, update };

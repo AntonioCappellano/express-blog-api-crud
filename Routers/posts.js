@@ -12,15 +12,7 @@ router.get("/:id", postController.show);
 router.post("/", postController.store);
 
 // UPDATE
-router.put("/:id", (req, res) => {
-  const postsId = req.params.id;
-  const responseData = {
-    result: `Modifica post ${postsId}`,
-    success: true,
-  };
-
-  res.json(responseData);
-});
+router.put("/:id", postController.update);
 
 // MODIFY
 router.patch("/:id", (req, res) => {
