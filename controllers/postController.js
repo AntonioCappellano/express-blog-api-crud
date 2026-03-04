@@ -38,7 +38,6 @@ function show(req, res) {
 // Destroy
 
 function destroy(req, res) {
-  
   const postId = parseInt(req.params.id);
 
   // findIndex restituisce la posizione se non la trova restituisce -1
@@ -90,9 +89,27 @@ function store(req, res) {
 // Update
 
 function update(req, res) {
-  const postsId = req.params.id;
+  const postsId = parseInt(req.params.id);
+
+  const post = postsData.find((post) => post.id === postsId);
+
+  if (!post) {
+    res.status(404);
+    return res.json({
+      error: "non trovato",
+      message: "post non trovato",
+    });
+  }
+
+  post.title = req.body.title;
+  post.content = req.body.content;
+  post.tags = req.body.tags;
+
+  console.log(post);
+
   const responseData = {
-    result: `Modifica post ${postsId}`,
+    result: post,
+    message: `Modifica post ${postsId}`,
     success: true,
   };
 
