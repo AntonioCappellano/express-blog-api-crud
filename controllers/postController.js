@@ -38,12 +38,12 @@ function show(req, res) {
 // Destroy
 
 function destroy(req, res) {
-
+  
   const postId = parseInt(req.params.id);
- 
+
   // findIndex restituisce la posizione se non la trova restituisce -1
   const postIndex = postsData.findIndex((post) => post.id === postId);
- 
+
   // se il post non esiste rispondiamo con un errore 404
   if (postIndex === -1) {
     const responseData = {
@@ -53,7 +53,7 @@ function destroy(req, res) {
 
     return res.status(404).json(responseData);
   }
-  
+
   // usando splice cancello l'elemento dall'array
   postsData.splice(postIndex, 1);
 
@@ -66,12 +66,25 @@ function destroy(req, res) {
 // Store
 
 function store(req, res) {
+  const newId = postsData[postsData.length - 1].id + 1;
+  const newPost = {
+    id: newId,
+    title: req.body.title,
+    content: req.body.content,
+    tags: req.body.tags,
+  };
+
+  postsData.push(newPost);
+
+  console.log(newPost);
+
   const responseData = {
-    result: `Creazione post`,
+    result: newPost,
+    message: `Creazione post`,
     success: true,
   };
 
-  res.json(responseData);
+  res.status(201).json(responseData);
 }
 
 // Update

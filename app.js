@@ -10,6 +10,7 @@ const postsRouter = require("./Routers/posts");
 // middlewares
 
 app.use(express.static("public"));
+app.use(express.json());
 
 // routers
 
