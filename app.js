@@ -7,6 +7,7 @@ const appUrl = `http://localhost:${port}`;
 
 const postsRouter = require("./Routers/posts");
 const errorsHandler = require("./middlewares/errorsHandler");
+const notFound = require("./middlewares/notFound");
 
 // middlewares
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/posts", postsRouter);
 
 app.use(errorsHandler);
+app.use(notFound);
 
 app.listen(port, () => {
   console.log(`test app sulla porta ${appUrl}`);
